@@ -109,6 +109,37 @@ LoopBoxes:
 	return f, nil
 }
 
+func DecodeFileLazyMdat(r io.ReadSeeker) (*File, error) {
+	f := NewFile()
+	var boxStartPos uint64 = 0
+	lastBoxType := ""
+LoopBoxes:
+	for {
+		box, err := DecodeBoxLazyMdat(boxStartPos, r)
+		if err == io.EOF {
+			break LoopBoxes
+		}
+		if err != nil {
+			return nil, err
+		}
+		boxType, boxSize := box.Type(), box.Size()
+		if err != nil {
+			return nil, err
+		}
+		if boxType == "mdat" {
+			if f.isFragmented {
+				if lastBoxType != "moof" {
+					return nil, fmt.Errorf("does not support %v between moof and mdat", lastBoxType)
+				}
+			}
+		}
+		f.AddChild(box, boxStartPos)
+		lastBoxType = boxType
+		boxStartPos += boxSize
+	}
+	return f, nil
+}
+
 // AddChild - add child with start position
 func (f *File) AddChild(box Box, boxStartPos uint64) {
 	switch box.Type() {
