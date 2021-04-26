@@ -1,2 +1,4 @@
+github.com/edgeware/mp4ff v0.22.0 h1:l0dq4P1wVcAdFaAc00EbhgF0hz8QfNPSu+dTd/8hL3c=
+github.com/edgeware/mp4ff v0.22.0/go.mod h1:6VHE5CTkpDseIg775+rh8BfnTvqjMnVbz5EDU4QwSdc=
 github.com/go-test/deep v1.0.6 h1:UHSEyLZUwX9Qoi99vVwvewiMC8mM2bf7XEM2nqvzEn8=
 github.com/go-test/deep v1.0.6/go.mod h1:QV8Hv/iy04NyLBxAdO9njL0iVPN1S4d/A3NVv1V36o8=
