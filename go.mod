@@ -1,4 +1,4 @@
-module github.com/Jing06/mp4ff
+module github.com/J1ng06/mp4ff
 
 go 1.14
 
